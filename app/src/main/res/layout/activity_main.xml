@@ -14,11 +14,43 @@
         android:layout_marginTop="100dp"
         android:src="@mipmap/football_begain" />
 
-    <Button
-        android:id="@+id/btn_start"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="120dp"
         android:layout_height="wrap_content"
-        android:text="开始游戏" />
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/btn_bg"
+            android:text="开始游戏"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_start_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/btn_bg"
+            android:text="播放音效"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_stop_music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/btn_bg"
+            android:text="关闭音效"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
 </LinearLayout>

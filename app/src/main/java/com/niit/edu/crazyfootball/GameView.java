@@ -21,7 +21,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     private Canvas canvas;
     private Rect mSrcRect, mDestRect;
     private boolean flag;
-    private int canvas_width, canvas_height, pic_width, pic_height;
+    private int canvas_width, canvas_height, pic_width, pic_height, man_width = 890, man_height = 200;
 
 
     /*定义一个矩形*/
@@ -79,7 +79,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
             if (canvas != null) {
                 canvas.drawBitmap(bitmap, mSrcRect, mDestRect, null);
                 canvas.drawBitmap(football_bitmap, canvas_width / 2, canvas_height / 2, null);
-                canvas.drawBitmap(man_bitmap, canvas_width / 2 + 100, canvas_height / 2 - 160, null);
+                canvas.drawBitmap(man_bitmap, man_width, man_height, null);
             }
         } catch (Exception e) {
         } finally {
@@ -90,7 +90,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
+        man_height = (int) event.getY();
+        man_width = (int) event.getX();
         return super.onTouchEvent(event);
     }
 }
