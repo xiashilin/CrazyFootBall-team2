@@ -6,9 +6,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.Region;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.HashMap;
 
 /**
  * Created by xsl on 2016/11/21.
@@ -20,19 +25,23 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     private Bitmap bitmap, football_bitmap, man_bitmap;
     private Canvas canvas;
     private Rect mSrcRect, mDestRect;
-    private boolean flag;
-    private int canvas_width, canvas_height, pic_width, pic_height, man_width = 890, man_height = 200;
+    private boolean flag, isFlag;
+    private int canvas_width, canvas_height, pic_width, pic_height, man_width = 890, man_height = 300, football_width, football_height;
 
 
-    /*定义一个矩形*/
-    Rect rect = new Rect(0, 0, 400, 400);
-    /*定义一个Region*/
-    Region region = new Region(rect);
+    SoundPool soundPool;
+    private HashMap<Integer, Integer> soundMap;
 
     public GameView(Context context) {
         super(context);
         surfaceHolder = this.getHolder();
         surfaceHolder.addCallback(this);
+        soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        soundMap = new HashMap<>();
+        soundMap.put(1, soundPool.load(context, R.raw.game_music, 1));
+
+        football_width = ((MainActivity) context).getWindowManager().getDefaultDisplay().getWidth() / 2;
+        football_height = ((MainActivity) context).getWindowManager().getDefaultDisplay().getHeight() / 2;
     }
 
     @Override
@@ -78,8 +87,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
             mDestRect = new Rect(0, 0, canvas_width, canvas_height);
             if (canvas != null) {
                 canvas.drawBitmap(bitmap, mSrcRect, mDestRect, null);
-                canvas.drawBitmap(football_bitmap, canvas_width / 2, canvas_height / 2, null);
                 canvas.drawBitmap(man_bitmap, man_width, man_height, null);
+
+                if (football_width > 205) {
+                    if (isFlag)
+                        football_width -= 50;
+                    canvas.drawBitmap(football_bitmap, football_width, football_height, null);
+                } else {
+                    isFlag = false;
+                    soundPool.play(soundMap.get(1), 1, 1, 0, 0, 1);
+                    football_width = canvas_width / 2;
+                    football_height = canvas_height / 2;
+                    canvas.drawBitmap(football_bitmap, football_width, football_height, null);
+                }
+
             }
         } catch (Exception e) {
         } finally {
@@ -92,6 +113,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     public boolean onTouchEvent(MotionEvent event) {
         man_height = (int) event.getY();
         man_width = (int) event.getX();
+        isFlag = true;
         return super.onTouchEvent(event);
     }
 }
