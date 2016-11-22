@@ -23,8 +23,7 @@
             android:id="@+id/btn_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="120dp"
             android:background="@drawable/btn_bg"
             android:text="开始挑战"
@@ -34,8 +33,7 @@
             android:id="@+id/btn_start_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="120dp"
             android:background="@drawable/btn_bg"
             android:text="播放音效"
@@ -45,11 +43,20 @@
             android:id="@+id/btn_stop_music"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="120dp"
             android:background="@drawable/btn_bg"
             android:text="关闭音效"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/btn_bg"
+            android:text="关于我们"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

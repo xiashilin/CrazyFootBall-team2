@@ -4,16 +4,19 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.Region;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
-import android.util.Log;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by xsl on 2016/11/21.
@@ -31,6 +34,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
 
     SoundPool soundPool;
     private HashMap<Integer, Integer> soundMap;
+
+    Paint paint = new Paint();
+    Random random = new Random();
 
     public GameView(Context context) {
         super(context);
@@ -98,7 +104,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
                     soundPool.play(soundMap.get(1), 1, 1, 0, 0, 1);
                     football_width = canvas_width / 2;
                     football_height = canvas_height / 2;
-                    canvas.drawBitmap(football_bitmap, football_width, football_height, null);
+                    paint.setTextSize(80);
+                    paint.setTypeface(Typeface.SANS_SERIF);
+                    paint.setColor(Color.RED);
+                    canvas.drawText("+" + random.nextInt(100) + "", 200, 100, paint);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            canvas.drawBitmap(football_bitmap, football_width, football_height, null);
+                        }
+                    }, 3000);
+
                 }
 
             }
@@ -113,7 +130,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     public boolean onTouchEvent(MotionEvent event) {
         man_height = (int) event.getY();
         man_width = (int) event.getX();
-        isFlag = true;
+
+        if (man_width - football_width < 20 && man_height - football_height < 20) {
+            isFlag = true;
+        }
         return super.onTouchEvent(event);
     }
 }

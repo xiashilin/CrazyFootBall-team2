@@ -66,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.reset();
             }
         });
+        findViewById(R.id.btn_about).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("关于我们");
+                builder.setMessage("第二组始终为您保驾护航☺☺☺☺☺☺☺☺");
+                builder.setPositiveButton("确定", null);
+                builder.create().show();
+            }
+        });
     }
 
     @Override
