@@ -1,6 +1,7 @@
 package com.niit.edu.crazyfootball;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
@@ -74,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
                 builder.setMessage("第二组始终为您保驾护航☺☺☺☺☺☺☺☺");
                 builder.setPositiveButton("确定", null);
                 builder.create().show();
+            }
+        });
+        findViewById(R.id.btn_trends).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, TrendsActivity.class));
             }
         });
     }

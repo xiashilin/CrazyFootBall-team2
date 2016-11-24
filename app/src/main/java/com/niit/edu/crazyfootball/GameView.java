@@ -130,7 +130,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Run
     public boolean onTouchEvent(MotionEvent event) {
         man_height = (int) event.getY();
         man_width = (int) event.getX();
-
         if (man_width - football_width < 20 && man_height - football_height < 20) {
             isFlag = true;
         }
